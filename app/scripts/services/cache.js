@@ -1,3 +1,4 @@
+'use strict';
 function CacheService($cacheFactory, UsersService, ReposService, $q, $timeout) {
   var cachedData = {},
       keys = [],
@@ -35,7 +36,6 @@ function CacheService($cacheFactory, UsersService, ReposService, $q, $timeout) {
       if(angular.isUndefined(cache.get(userDetailKey+username))) {
         UsersService.getUser(username).then(function (response) {
           cachedData = response;
-          console.log(cachedData);
           deferred.resolve(cachedData);
           keys.push(userDetailKey+username);
           cache.put(userDetailKey+username, angular.isUndefined(cachedData) ? null : cachedData);
@@ -71,18 +71,17 @@ function CacheService($cacheFactory, UsersService, ReposService, $q, $timeout) {
   cachedData.getRepo = function (owner, repo) {
     var deferred = $q.defer();
     // if cache is not working, call $http
-    if(angular.isUndefined(cache.get(userDetailKey+owner+repo))) {
+    if(angular.isUndefined(cache.get(repoDetailKey+owner+repo))) {
       ReposService.getRepo(owner, repo).then(function (response) {
         cachedData = response;
-        console.log(cachedData);
         deferred.resolve(cachedData);
-        keys.push(userDetailKey+owner+repo);
-        cache.put(userDetailKey+owner+repo, angular.isUndefined(cachedData) ? null : cachedData);
+        keys.push(repoDetailKey+owner+repo);
+        cache.put(repoDetailKey+owner+repo, angular.isUndefined(cachedData) ? null : cachedData);
       });
     }
     // else read from ache
     else {
-      cachedData = cache.get(userDetailKey+owner+repo);
+      cachedData = cache.get(repoDetailKey+owner+repo);
       deferred.resolve(cachedData);
     }
     return deferred.promise;

@@ -1,3 +1,4 @@
+'use strict';
 function ReposCtrl(CacheService) {
   this.repos = [];
   this.loading = true;

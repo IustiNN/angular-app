@@ -1,3 +1,4 @@
+'use strict';
 // create an ReposService to fetch our repos
 function ReposService($http) {
   function getRepos() {

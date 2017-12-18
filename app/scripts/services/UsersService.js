@@ -1,3 +1,4 @@
+'use strict';
 // create an UsersService to fetch our users
 function UsersService($http) {
   function getUsers() {
