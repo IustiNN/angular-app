@@ -1,0 +1,20 @@
+<h2 class="ui center aligned header">List of users</h2>
+<div ng-class="{active: users.loading}" class="ui dimmer" ng-show="users.loading">
+  <div class="ui loader"></div>
+</div>
+<div class="ui search">
+  <input class="prompt" type="text" ng-model="query" placeholder="Search users...">
+</div>
+<div class="ui cards">
+  <div class="card" ng-repeat="user in users.users | filter:query">
+    <div class="image">
+      <img ng-src="{{user.avatar_url}}">
+    </div>
+    <div class="content">
+      <a class="header" href="/#/users/{{user.login}}">{{user.login}}</a>
+      <div class="meta">
+        <span class="date">Joined in 2013</span>
+      </div>
+    </div>
+  </div>
+</div>

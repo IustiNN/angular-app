@@ -17,19 +17,30 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $locationProvider) {
+    $locationProvider.hashPrefix('');
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/list.html',
+      .when('/users', {
+        templateUrl: 'views/usersList.html',
         controller: 'UsersCtrl',
         controllerAs: 'users'
       })
-      .when('/:id', {
-        templateUrl: 'views/detail.html',
-        controller: 'DetailCtrl',
+      .when('/repos', {
+        templateUrl: 'views/reposList.html',
+        controller: 'ReposCtrl',
+        controllerAs: 'repos'
+      })
+      .when('/repos/:owner/:repo', {
+        templateUrl: 'views/repoDetail.html',
+        controller: 'RepoDetailCtrl',
+        controllerAs: 'repo'
+      })
+      .when('/users/:username', {
+        templateUrl: 'views/userDetail.html',
+        controller: 'UserDetailCtrl',
         controllerAs: 'user'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/users'
       });
   });

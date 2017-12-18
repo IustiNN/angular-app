@@ -19,10 +19,18 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <div class="ui borderless main menu">
+        <div class="ui text container">
+            <div href="" class="header item">
+                Project Name
+            </div>
+            <a href="/" class="item">Users</a>
+            <a href="/#/repos" class="item">Repos</a>
+        </div>
+    </div>
+
     <h1 class="ui center aligned header">Github</h1>
 
-
-<h2 class="ui center aligned header">List of users</h2>
 
 <div ng-view class="ui container">
 
@@ -42,9 +50,11 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/detail.js"></script>
+        <script src="scripts/controllers/users.js"></script>
+        <script src="scripts/controllers/repos.js"></script>
         <script src="scripts/services/UsersService.js"></script>
+        <script src="scripts/services/ReposService.js"></script>
+        <script src="scripts/services/cache.js"></script>
         <!-- endbuild -->
 </body>
 </html>

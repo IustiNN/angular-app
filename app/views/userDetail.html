@@ -1,0 +1,43 @@
+<div ng-class="{active: user.loading}" class="ui dimmer" ng-show="user.loading">
+  <div class="ui loader"></div>
+</div>
+<div class="ui cards centered">
+  <div class="card">
+    <div class="image">
+      <img src="{{user.user.avatar_url}}">
+    </div>
+    <div class="content">
+      <a class="header" href="{{user.user.url}}">{{user.user.name}}</a>
+      <div class="meta">
+        <span class="date">{{user.user.created_at | date}}</span>
+      </div>
+      <div class="description">
+        <ul>
+          <li ng-if="user.user.company">Company: {{user.user.company}}</li>
+          <li ng-if="user.user.location">Location: {{user.user.location}}</li>
+          <li ng-if="user.user.blog">Blog: <a href="{{user.user.blog}}" target="_blank">{{user.user.blog}}</a></li>
+          <li>Username: {{user.user.login}}</li>
+        </ul>
+        <span ng-hide="user.editMode">{{user.user.bio}}{{!user.user.bio.length ? 'No description. Click the edit button to add one' : ''}}</span>
+        <div class="field ui form" ng-show="user.editMode">
+          <label>Description</label>
+          <textarea rows="3" ng-model="user.user.bio"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="extra content">
+      <a>
+        {{user.user.public_repos}} Public Repos
+      </a>
+
+      <button type="submit" ng-hide="user.editMode" ng-click="user.editMode = true; user.editRepo(user.user)" class="ui button">Edit</button>
+      <button type="submit" ng-show="user.editMode" ng-click="user.editMode = false" class="ui button ui">Save</button>
+      <button type="submit" ng-show="user.editMode" ng-click="user.editMode = false; user.cancel()" class="ui button">Cancel</button>
+    </div>
+  </div>
+
+
+</div>
+<div class="ui text container">
+  <a href="/#/users" class="ui button center">Back to list</a>
+</div>

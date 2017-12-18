@@ -5,8 +5,8 @@ function UsersService($http) {
       return response.data;
     });
   }
-  function getUser(id) {
-    return $http.get('https://api.github.com/users/' + id).then(function (response) {
+  function getUser(username) {
+    return $http.get('https://api.github.com/users/' + username).then(function (response) {
       return response.data;
     });
   }

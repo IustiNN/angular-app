@@ -1,0 +1,20 @@
+<h2 class="ui center aligned header">List of repos</h2>
+<div ng-class="{active: repos.loading}" class="ui dimmer" ng-show="repos.loading">
+    <div class="ui loader"></div>
+</div>
+<div class="ui search">
+    <input class="prompt" type="text" ng-model="query" placeholder="Search repos...">
+</div>
+<div class="ui four doubling cards">
+    <div class="card" ng-repeat="repo in repos.repos | filter: query">
+        <div class="content">
+            <a class="header" href="/#/repos/{{repo.owner.login}}/{{repo.name}}">{{repo.full_name}}</a>
+            <div class="meta">
+                <span class="date">Joined in 2013</span>
+            </div>
+            <div class="description">
+                <span>{{repo.description | limitTo: 80 }}{{repo.description.length > 80 ? '...' : ''}}</span>
+            </div>
+        </div>
+    </div>
+</div>

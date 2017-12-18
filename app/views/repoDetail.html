@@ -1,0 +1,38 @@
+<div ng-class="{active: repo.loading}" class="ui dimmer" ng-show="repo.loading">
+    <div class="ui loader"></div>
+</div>
+<div class="ui cards centered">
+    <div class="card">
+        <div class="content">
+            <div class="image">
+                <img class="ui medium image" ng-src="{{repo.repo.owner.avatar_url}}">
+            </div>
+            <a class="header" href="{{repo.repo.url}}">{{repo.repo.name}}</a>
+            <div class="meta">
+                <span class="date">{{repo.repo.created_at | date}}</span>
+            </div>
+            <div class="description">
+                <ul>
+                    <li>Forks: {{repo.repo.forks}}</li>
+                    <li>Owner: <a href="{{repo.repo.owner.html_url}}" target="_blank">{{repo.repo.owner.login}}</a></li>
+                    <li><a href="{{repo.repo.html_url}}" target="_blank">Github URL</a></li>
+                </ul>
+                <span ng-hide="repo.editMode">{{repo.repo.description}}{{!repo.repo.description.length ? 'No description. Click the edit button to add one' : ''}}</span>
+                <div class="field ui form" ng-show="repo.editMode">
+                    <label>Description</label>
+                    <textarea rows="3" ng-model="repo.repo.description"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="extra content">
+            <button type="submit" ng-hide="repo.editMode" ng-click="repo.editMode = true; repo.editRepo(repo.repo)" class="ui button">Edit</button>
+            <button type="submit" ng-show="repo.editMode" ng-click="repo.editMode = false" class="ui button ui">Save</button>
+            <button type="submit" ng-show="repo.editMode" ng-click="repo.editMode = false; repo.cancel()" class="ui button">Cancel</button>
+        </div>
+    </div>
+
+
+</div>
+<div class="ui text container">
+    <a href="/#/repos" class="ui button center">Back to list</a>
+</div>
